@@ -11,7 +11,7 @@ const db = require('../config/database-connection')
 
 // Define an API endpoint that fetches product names
 router.get('/products', (req, res) => {
-    db.query('SELECT name, description, price, stock FROM products', (err, results) => {
+    db.query('SELECT category_id, id, name, description, image_url,  price, stock FROM products', (err, results) => {
         if (err) return res.status(500).json({ error: err.message });
         res.json(results); // Send data as JSON
     });
