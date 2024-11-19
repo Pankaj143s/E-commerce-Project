@@ -1,7 +1,13 @@
 const express = require('express')
-
-const productRoutes = require('./routes/productRoutes')
+const cors = require('cors')
 const app = express()
+
+
+app.use(cors());
+
+app.use(cors({ origin: ['http://localhost:5173', 'https://localhost:5173'] }))
+const productRoutes = require('./routes/productRoutes')
+
 
 
 app.use('/api', productRoutes)
