@@ -1,13 +1,25 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
+  const navigate = useNavigate();
+
+  const handleGoToProduct = () => {
+    // const productId = product.id;
+    // console.log(productId);
+    navigate(`/products/${product.id}`);
+  };
+
   return (
     <>
-      <div className="w-full max-w-xs p-4  bg-red-100 rounded-md space-y-3 overflow-hidden ">
+      <div
+        className="w-full max-w-xs p-4  bg-red-100 rounded-md space-y-3 overflow-hidden "
+        onClick={handleGoToProduct}
+      >
         <div className="overflow-hidden">
           <img
             src={product.image_url}
-            className="w-full rounded-md  hover:scale-110 transition-all duration-500 ease-in-out "
+            className="w-full h-72 object-cover rounded-md  hover:scale-110 transition-all duration-500 ease-in-out "
             alt=""
           />
         </div>

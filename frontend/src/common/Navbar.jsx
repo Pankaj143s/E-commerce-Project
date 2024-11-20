@@ -1,30 +1,67 @@
 import React, { useState } from "react";
 import { TiThMenu } from "react-icons/ti";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { useProducts } from "../../context/ProductContext";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { setSearchQuery } = useProducts();
 
   const handleMenu = () => {
     setIsMenuOpen((prev) => !prev);
   };
 
   const MenuList = () => (
-    <ul className="flex flex-col md:flex-row items-center justify-center space-y-2 md:space-y-0 md:space-x-8 text-red-800 font-bold text-xl">
+    <ul className="flex flex-col md:flex-row items-center justify-center space-y-2 md:space-y-0 md:space-x-4 text-red-800 font-bold text-xl">
       <li>
-        <Link to="/men">Men</Link>
+        <NavLink
+          to="/men"
+          className={({ isActive }) =>
+            isActive ? "bg-red-300 px-2 py-1 rounded-md " : "px-2 py-1"
+          }
+        >
+          Men
+        </NavLink>
       </li>
       <li>
-        <Link to="women">Women</Link>
+        <NavLink
+          to="women"
+          className={({ isActive }) =>
+            isActive ? "bg-red-300 px-2 py-1 rounded-md" : "px-2 py-1"
+          }
+        >
+          Women
+        </NavLink>
       </li>
       <li>
-        <Link to="kids">Kids</Link>
+        <NavLink
+          to="kids"
+          className={({ isActive }) =>
+            isActive ? "bg-red-300 px-2 py-1 rounded-md" : "px-2 py-1"
+          }
+        >
+          Kids
+        </NavLink>
       </li>
       <li>
-        <Link to="electronics">Electronics</Link>
+        <NavLink
+          to="electronics"
+          className={({ isActive }) =>
+            isActive ? "bg-red-300 px-2 py-1 rounded-md" : "px-2 py-1"
+          }
+        >
+          Electronics
+        </NavLink>
       </li>
       <li>
-        <Link to="Shoes">Shoes</Link>
+        <NavLink
+          to="Shoes"
+          className={({ isActive }) =>
+            isActive ? "bg-red-300 px-2 py-1 rounded-md" : "px-2 py-1"
+          }
+        >
+          Shoes
+        </NavLink>
       </li>
     </ul>
   );
@@ -34,8 +71,17 @@ const Navbar = () => {
       <nav>
         <div className=" flex justify-between items-center space-x-2 px-6 md:px-12 py-4 bg-red-200 ">
           {/* Logo Section */}
-          <div>
-            <h1 className="text-2xl  font-bold text-red-800">Logo</h1>
+          <div className="flex gap-4 items-center">
+            <h1 className="text-2xl  font-bold text-red-800">
+              {" "}
+              <Link to={"/"}>Logo</Link>{" "}
+            </h1>
+            <input
+              type="text"
+              className=" rounded-md p-2 text-sm bg-slate-50 drop-shadow-sm  placeholder:text-red-800 placeholder:opacity-40"
+              placeholder="Search..."
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
           </div>
           {/* Menu Section */}
           <div className="hidden md:block">

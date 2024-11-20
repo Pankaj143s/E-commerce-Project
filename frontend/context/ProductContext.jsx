@@ -7,6 +7,7 @@ export const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState([]); // state to hold fetched products
   const [loading, setLoading] = useState(true); //Loading state
   const [error, setError] = useState(null); //Error state
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -23,7 +24,9 @@ export const ProductProvider = ({ children }) => {
   }, []); // Empty dependency array ensures this runs only once when mounted
 
   return (
-    <ProductContext.Provider value={{ products, loading, error }}>
+    <ProductContext.Provider
+      value={{ products, loading, error, searchQuery, setSearchQuery }}
+    >
       {children}
     </ProductContext.Provider>
   );

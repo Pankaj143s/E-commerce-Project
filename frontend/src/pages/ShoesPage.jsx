@@ -3,12 +3,15 @@ import { useProducts } from "../../context/ProductContext";
 import ProductCard from "../components/cards/ProductCard";
 
 const ShoesPage = () => {
-  const { products, loading, error } = useProducts();
+  const { products, loading, error, searchQuery } = useProducts();
 
   if (loading) return <p>Loading products...</p>;
   if (error) return <p>Error: {error}</p>;
 
   const shoesProducts = products.filter((product) => product.category_id === 5);
+  const searchFilter = shoesProducts.filter((product) =>
+    product.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div>

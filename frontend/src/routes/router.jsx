@@ -6,12 +6,19 @@ import WomenPage from "../pages/WomenPage";
 import KidsPage from "../pages/KidsPage";
 import ElectronicsPage from "../pages/ElectronicsPage";
 import ShoesPage from "../pages/ShoesPage";
+import ProductDetailsCard from "../components/cards/ProductDetailsCard";
+import App from "../App";
+import AddToCart from "../pages/AddToCart";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <App />,
     children: [
+      {
+        path: "",
+        element: <Home />,
+      },
       {
         path: "men",
         element: <MenPage />,
@@ -31,6 +38,14 @@ export const router = createBrowserRouter([
       {
         path: "shoes",
         element: <ShoesPage />,
+      },
+      {
+        path: "products/:productId",
+        element: <ProductDetailsCard />,
+      },
+      {
+        path: "/cart",
+        element: <AddToCart />,
       },
     ],
   },
