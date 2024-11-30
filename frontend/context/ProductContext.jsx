@@ -8,6 +8,7 @@ export const ProductProvider = ({ children }) => {
   const [loading, setLoading] = useState(true); //Loading state
   const [error, setError] = useState(null); //Error state
   const [searchQuery, setSearchQuery] = useState("");
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -25,7 +26,15 @@ export const ProductProvider = ({ children }) => {
 
   return (
     <ProductContext.Provider
-      value={{ products, loading, error, searchQuery, setSearchQuery }}
+      value={{
+        products,
+        loading,
+        error,
+        searchQuery,
+        setSearchQuery,
+        setCart,
+        cart,
+      }}
     >
       {children}
     </ProductContext.Provider>

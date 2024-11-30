@@ -1,13 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useProducts } from "../../../context/ProductContext";
 
 const ProductCard = ({ product }) => {
+  // importing context
+  const { setCart, cart } = useProducts();
+
   const navigate = useNavigate();
 
   const handleGoToProduct = () => {
-    // const productId = product.id;
-    // console.log(productId);
     navigate(`/products/${product.id}`);
+  };
+
+  // Add to cart button
+  const handleAddToCart = (e) => {
+    e.stopPropagation(); // Prevent triggering the parent onClick
+    if (cart && !cart.includes(product.id)) {
+      setCart((prevCart) => {
+        const updatedCart = [...prevCart, product.id];
+        console.log("Updated cart:", updatedCart);
+        return updatedCart;
+      });
+    } else {
+      alert(`Product ${product.id} is already in the cart`);
+    }
   };
 
   return (
@@ -27,7 +43,10 @@ const ProductCard = ({ product }) => {
         <p className="text-sm text-red-800 opacity-60">{product.description}</p>
         <div className="flex justify-between items-center">
           <p className="font-bold text-lg text-red-800">${product.price}</p>
-          <button className="bg-red-200 hover:bg-red-500 hover:text-red-50 transition-all ease-in-out duration-500 p-2 rounded-md text-red-800   font-bold  text-base">
+          <button
+            onClick={handleAddToCart}
+            className="bg-red-200 hover:bg-red-500 hover:text-red-50 transition-all ease-in-out duration-500 p-2 rounded-md text-red-800   font-bold  text-base"
+          >
             Add to cart
           </button>
         </div>

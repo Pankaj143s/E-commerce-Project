@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useProducts } from "../../context/ProductContext";
 import ProductCard from "../components/cards/ProductCard";
 
 const Home = () => {
-  const { products, loading, error, searchQuery } = useProducts();
+  const { products, loading, error, searchQuery, cart } = useProducts();
 
   if (loading) return <p>Loading products...</p>;
   if (error) return <p>Error: {error}</p>;

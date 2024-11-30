@@ -63,6 +63,16 @@ const Navbar = () => {
           Shoes
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to="cart"
+          className={({ isActive }) =>
+            isActive ? "bg-red-300 px-2 py-1 rounded-md" : "px-2 py-1"
+          }
+        >
+          Cart
+        </NavLink>
+      </li>
     </ul>
   );
 
